@@ -1,0 +1,17 @@
+8 Advanced JavaScript exercises that focus on modern ES6+ concepts, including:
+
+1. Array/Object Methods
+
+2. Destructuring
+
+3. Spread/Rest
+
+4. Template Literals
+
+5. Arrow Functions
+
+6. Default Parameters
+
+7. Object Shorthand
+
+8. Optional Chaining
