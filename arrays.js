@@ -125,9 +125,14 @@ console.log(fillMissingDays(days)); //prints ['Mon', 'Tue', 'Wed', 'Thu', 'Fri',
 
 // #11 Destructuring an array
 const color = ['red', 'green', 'blue', 'yellow'];
+color.push('white')
+const code = [1,2,3,4]
 const [firstColor, secondColor] = colors; //destructures the array into variables and Extracts the first two colors into variables 
-
-console.log(firstColor); //prints 'red'
 console.log(secondColor); //prints 'green'
+
+// #12 Joining Arrays together
+const merge = [...color, ...code]
+const conc = color.concat(code) 
+console.log(conc, merge); //prints  ['red', 'green', 'blue', 'yellow', 'white', 1,2,3,4]
 
 
