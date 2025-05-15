@@ -81,7 +81,6 @@ const cart = [
   { item: "Pen", price: 2 },
   { item: "Notebook", price: 5 }
 ];
-// Task: Use .reduce() to calculate the total cost
 const calculateTotal = (cartItems) => {
   return cartItems.reduce((total, item) => total + item.price, 0);
 }
