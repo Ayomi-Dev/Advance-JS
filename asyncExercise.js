@@ -14,13 +14,12 @@ getUser((user) => {
 
  //#2 Make a function return a Promise that resolves with a user object after 1 second.
 const getUserPromise = () => {
-    const getUser =  new Promise((resolve) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             const user = { name: 'Ada', age: 28 }; 
             resolve(user)
         }, 1000);
     })
-    return getUser;
 }
 getUserPromise()
 .then((user) => {
@@ -72,28 +71,29 @@ const serveAll = async() => {
 }
 serveAll(); // combines multiple promises and waits for all of them to resolve before logging the result at same time
 
-// #5 A function tryFetchData() that simulates fetching data from a flaky server—it randomly succeeds or fails. 
-// Your job is to keep retrying the function until it succeeds, with a maximum of 5 maxAttempts. If it fails 5 times, log "Failed after 5 attempts"
+// #5 A function tryFetchData() that simulates fetching data from a flaky server—--one that randomly succeeds or fails. 
 const tryFetchData = () => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const success = Math.random() > 0.5; // Simulate a 50% chance of success
-            if (success) {
+            const successRate = Math.random() > 0.5; // Simulate a 50% chance of successRate
+            console.log(successRate)
+            if (successRate) {
                 resolve('Data fetched successfully!');
             } else {
                 reject('Failed to fetch data');
             }
-        }, 5000);
+        }, 2000);
     });
 }
 
 const fetchWithRetry = async (maxAttempts = 5) => {
-    for(let i = 1; i <= maxAttempts; i++){
+    for(let i = 1; i <= maxAttempts; i++){ // Retrying the function until it succeeds, with a maximum of 5 maxAttempts. If it fails 5 times, log "Failed after 5 attempts"
         try {
             const data = await tryFetchData();
             console.log(`On Attempt${i}: ${data}`);
             return data; // Exit the loop if successful
-        } catch (error) {
+        } 
+        catch (error) {
            console.log(`On Attempt${i}: ${error}`);
             if (i === maxAttempts) {
                 console.log('Failed after 5 Attempts');
@@ -108,9 +108,11 @@ fetchWithRetry(); // Call the function to fetch data with retry logic
 
 function fetchPosts() {
   return new Promise((resolve, reject) => {
-    const shouldFail = Math.random() < 0.2; // 20% chance of failure
+
+    const failRate = Math.random() < 0.2; // 20% chance of failure
+
     setTimeout(() => {
-      if (shouldFail) {
+      if (failRate) {
         reject("🚨 Failed to load posts");
       } else {
         resolve([
@@ -128,8 +130,7 @@ const loadFakeBookFeed = async () => {
     console.log('Loading posts...')
     try {
         const posts = await fetchPosts();
-        console.log('Posts loaded:', posts);
-
+        
         // Check if posts is an array and has elements
         if(posts.length > 0){
             console.log(`${posts.length} Posts loaded successfully`);
